@@ -8,16 +8,14 @@ import (
 
 type Request struct {
 	gorm.Model
-	InstanceID   uint
-	Name         string
-	StatusCode   int
-	ResponseTime int
-	IsMet        bool
+	InstanceID uint
+	Name       string
+	StatusCode int
+	IsMet      bool
 }
 
-func (r *Request) Expectation(el interface{}) bool {
-	req := el.(http.Request)
-	r.IsMet = req.Response.StatusCode == r.StatusCode
+func (r *Request) Expectation(el http.Response) bool {
+	r.IsMet = el.StatusCode == r.StatusCode
 	return r.IsMet
 }
 

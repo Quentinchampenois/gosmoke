@@ -1,5 +1,7 @@
 package instances
 
+import "net/http"
+
 type Requirement struct {
 	ID         uint
 	Name       string
@@ -11,7 +13,7 @@ type Requirement struct {
 	Request    Request
 }
 
-func (r *Requirement) Expectation(el interface{}) bool {
+func (r *Requirement) Expectation(el http.Response) bool {
 	if r.ContainsID != 0 {
 		return r.Contains.Expectation(el)
 	} else {

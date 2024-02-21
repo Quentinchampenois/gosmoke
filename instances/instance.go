@@ -6,6 +6,6 @@ type Instance struct {
 	gorm.Model
 	Name            string
 	URL             string
-	MinResponseTime int
+	MaxResponseTime int
 	Requirements    []Requirement
 }

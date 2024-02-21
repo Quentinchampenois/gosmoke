@@ -30,15 +30,16 @@ func seeding(db *gorm.DB) {
 		return
 	}
 
-	db.Create(&instances.Instance{Name: "Decidim App Develop", URL: "https://decidim-app-develop.osp.dev/"})
-	db.Create(&instances.Instance{Name: "Decidim App k8s", URL: "https://develop.decidim-app.k8s.osp.cat/"})
+	db.Create(&instances.Instance{Name: "Google", URL: "https://google.fr/"})
+	db.Create(&instances.Request{InstanceID: 1, Name: "HTTP Requirements", StatusCode: 200})
+	db.Create(&instances.Contains{InstanceID: 1, Name: "Has a search button", Expected: "Recherche Google"})
+	db.Create(&instances.Requirement{InstanceID: 1, ContainsID: 1, Name: ""})
+	db.Create(&instances.Requirement{InstanceID: 1, RequestID: 1, Name: ""})
 
-	db.Create(&instances.Request{InstanceID: 1, Name: "HTTP Requirements", StatusCode: 200, ResponseTime: 1000})
-	db.Create(&instances.Request{InstanceID: 2, Name: "HTTP Requirements", StatusCode: 200, ResponseTime: 1000})
-	db.Create(&instances.Contains{InstanceID: 1, Name: "Decidim App Develop", Expected: "decidim-app"})
-	db.Create(&instances.Contains{InstanceID: 2, Name: "Decidim App k8s", Expected: "decidim-app"})
-	db.Create(&instances.Contains{InstanceID: 2, Name: "Decidim App k8s", Expected: "matomo"})
-	db.Create(&instances.Requirement{InstanceID: 1, ContainsID: 3, Name: "Decidim App Develop"})
-	db.Create(&instances.Requirement{InstanceID: 1, ContainsID: 0, Name: "Has valid HTTP status", RequestID: 1})
-	db.Create(&instances.Requirement{InstanceID: 2, ContainsID: 0, Name: "Has valid HTTP status", RequestID: 2})
+	db.Create(&instances.Instance{Name: "Mozilla FR", URL: "https://www.mozilla.org/fr/"})
+	db.Create(&instances.Request{InstanceID: 2, Name: "HTTP Requirements", StatusCode: 200})
+	db.Create(&instances.Contains{InstanceID: 2, Name: "Has a CEO's message", Expected: "La bonne santé d’Internet et de la vie en ligne est notre raison d’exister."})
+	db.Create(&instances.Requirement{InstanceID: 2, ContainsID: 2, Name: ""})
+	db.Create(&instances.Requirement{InstanceID: 2, RequestID: 2, Name: ""})
+
 }
